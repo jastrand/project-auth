@@ -76,6 +76,25 @@ app.post('/users', async (req, res) => {
   }
 })
 
+app.post('/sessions', async (req, res) => {
+  const user = await User.findOne({ name: req.body.name });
+  if (user && bcrypt.compareSync(req.body.password, user.password)) {
+    res.json({ userId: user._id, accessToken: user.accessToken })
+  } else {
+    if (!user) {
+      res.status(404).json({ error: 'Username does not exist' })
+    } else {
+      res.status(400).json({ error: 'Invalid password' })
+    }
+  }
+})
+
+app.get('/secrets', authenticateUser)
+
+app.get('/secrets', async (req, res) => {
+  res.send('you found hte secret')
+})
+
 
 // Start the server
 app.listen(port, () => {
