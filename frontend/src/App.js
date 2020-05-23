@@ -1,4 +1,5 @@
 import React from 'react'
+import styled, { keyframes } from 'styled-components'
 import { Provider } from 'react-redux'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { SignUp } from './pages/SignUp'
@@ -13,16 +14,19 @@ const reducer = combineReducers({
 
 const store = configureStore({ reducer })
 
+
+
+
 export const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-            <Route path='/' exact ><LogIn /></Route>
-            <Route path='/register' exact ><SignUp /></Route>
-            <Route path='/secret' exact ><Secret /></Route>
-          </div>
+
+          <Route path='/' exact ><LogIn /></Route>
+          <Route path='/register' exact ><SignUp /></Route>
+          <Route path='/secret' exact ><Secret /></Route>
+
         </Switch>
       </BrowserRouter>
     </Provider>

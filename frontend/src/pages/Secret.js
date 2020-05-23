@@ -1,7 +1,26 @@
 import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userProfile } from '../reducers/userinfo'
+import { Animation } from '../components/Animation'
+
+const Text = styled.p`
+  font-size: 50px;
+  color: #3831ac;
+  font-family: 'Bangers';
+  margin: 0;
+  margin-bottom: -50px;
+`
+
+const Logout = styled.button`
+  font-size: 30px;
+  background-color: transparent;
+  border-radius: 12px;
+  margin: 20px;
+  color: #3831ac;
+  border-color: #3831ac;
+`
 
 export const Secret = () => {
   const dispatch = useDispatch()
@@ -23,8 +42,10 @@ export const Secret = () => {
     history.push('/')
   }
   return (
-  <div><p>{message}</p>
-      <button onClick={() => LogOut()}>Log out</button>
+    <div>
+      <Text>{message}</Text>
+      {token && <Logout onClick={() => LogOut()}>Log out</Logout>}
+      {!token && <Animation />}
     </div>
   )
 }
