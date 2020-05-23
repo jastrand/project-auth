@@ -68,8 +68,10 @@ app.post('/users', async (req, res) => {
       const user = await new User({ name, email, password: bcrypt.hashSync(password) })
       user.save()
       res.status(201).json({ id: user._id, accessToken: user.accessToken })
+    } else if (existingUsername) {
+      res.status(400).json({ error: 'Username already exist' })
     } else {
-      res.status(400).json({ error: 'email or username not unique' })
+      res.status(400).json({ error: 'Email already exist' })
     }
   } catch (err) {
     res.status(400).json({ error: 'could not create user', errors: err.errors })

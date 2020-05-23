@@ -19,6 +19,7 @@ export const Input = styled.input`
   margin: 8px 0px;
   font-size: 20px;
   width: 100%;
+  border-color: ${props => props.borderColor}
 `
 
 export const Label = styled.label`

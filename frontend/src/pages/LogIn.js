@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { userProfile } from '../reducers/userinfo'
 import { Form, Header, Input, Label, Button, Register } from '../components/FormStuff'
@@ -7,6 +7,7 @@ import { Form, Header, Input, Label, Button, Register } from '../components/Form
 
 export const LogIn = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const [name, setName] = useState()
   const [password, setPassword] = useState()
   const [userError, setUserError] = useState(false)
@@ -29,6 +30,7 @@ export const LogIn = () => {
           )
           setUserError(false)
           setPasswordError(false)
+          history.push('/secret')
         }
       })
   }
