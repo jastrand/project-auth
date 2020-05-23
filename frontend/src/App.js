@@ -17,11 +17,13 @@ export const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-      <Switch>
-        <Route path = '/' exact ><LogIn /></Route>
-        <Route path = '/register' exact ><SignUp /></Route>
-        <Route path = '/secret' exact ><Secret /></Route>
-      </Switch>
+        <Switch>
+          <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+            <Route path='/' exact ><LogIn /></Route>
+            <Route path='/register' exact ><SignUp /></Route>
+            <Route path='/secret' exact ><Secret /></Route>
+          </div>
+        </Switch>
       </BrowserRouter>
     </Provider>
   )
