@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { userProfile } from '../reducers/userinfo'
 
 export const LogIn = () => {
+  const dispatch = useDispatch()
   const [name, setName] = useState()
   const [password, setPassword] = useState()
 
@@ -13,7 +16,9 @@ export const LogIn = () => {
     })
       .then(res => res.json())
       .then((data) => {
-        console.log(data)
+        dispatch(
+          userProfile.actions.loggedIn({ id: data.id, accessToken: data.accessToken, loggedIn: true })
+      )
       })
   }
 

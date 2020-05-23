@@ -23,7 +23,8 @@ export const userProfile = createSlice({
         //reduer to set id and token to false when user logs out
         logOut: (state) => {
             state.user.id = false;
-            state.user.accessToken = false
+            state.user.accessToken = false;
+            state.user.loggedIn = false
         }
     }
 })
