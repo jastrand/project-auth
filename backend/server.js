@@ -92,7 +92,7 @@ app.post('/sessions', async (req, res) => {
 app.get('/secrets', authenticateUser)
 
 app.get('/secrets', async (req, res) => {
-  res.send('you found hte secret')
+  res.json({ message: 'you found the secret' })
 })
 
 

@@ -19,7 +19,7 @@ export const SignUp = () => {
             .then(res => res.json())
             .then((data) => {
                 dispatch(
-                    userProfile.actions.loggedIn({ id: data.id, accessToken: data.accessToken })
+                    userProfile.actions.loggedIn({ id: data.id, accessToken: data.accessToken, loggedIn: true })
                 )
             })
     }

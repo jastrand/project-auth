@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { SignUp } from './pages/SignUp'
 import { LogIn } from './pages/LogIn'
+import { Secret } from './pages/Secret'
 import { userProfile } from 'reducers/userinfo'
 
 const reducer = combineReducers({
@@ -18,6 +19,7 @@ export const App = () => {
         <SignUp />
         <p>hello</p>
         <LogIn />
+        <Secret />
       </div>
     </Provider>
   )

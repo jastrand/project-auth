@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     user: {
         id: false,
-        accessToken: false
+        accessToken: false,
+        loggedIn: false
     }
 }
 
@@ -14,9 +15,10 @@ export const userProfile = createSlice({
 
         //reducer to set id and token with that recieved from backend
         loggedIn: (state, action) => {
-            const { id, accessToken } = action.payload
+            const { id, accessToken, loggedIn } = action.payload
             state.user.id = id;
             state.user.accessToken = accessToken;
+            state.user.loggedIn = loggedIn
         },
         //reduer to set id and token to false when user logs out
         logOut: (state) => {
