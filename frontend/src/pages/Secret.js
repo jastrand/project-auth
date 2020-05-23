@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userProfile } from '../reducers/userinfo'
@@ -6,6 +6,7 @@ import { userProfile } from '../reducers/userinfo'
 export const Secret = () => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const [message, setMessage] = useState()
   const token = useSelector((state) => state.userProfile.user.accessToken)
   useEffect(() => {
     console.log('hello')
@@ -14,7 +15,7 @@ export const Secret = () => {
       headers: { 'Authorization': token, 'Content-Type': 'application/json' }
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => setMessage(data.message))
   }, [token])
 
   const LogOut = () => {
@@ -22,7 +23,7 @@ export const Secret = () => {
     history.push('/')
   }
   return (
-    <div><p>Secret!</p>
+  <div><p>{message}</p>
       <button onClick={() => LogOut()}>Log out</button>
     </div>
   )

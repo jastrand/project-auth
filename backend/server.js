@@ -35,7 +35,7 @@ const authenticateUser = async (req, res, next) => {
     req.user = user
     next()
   } else {
-    res.status(401).json({ loggedOut: true })
+    res.status(401).json({ message: 'You must be loged in to see this message' })
   }
 }
 
@@ -94,7 +94,8 @@ app.post('/sessions', async (req, res) => {
 app.get('/secrets', authenticateUser)
 
 app.get('/secrets', async (req, res) => {
-  res.json({ message: 'you found the secret' })
+  const user = await User.findOne({ accessToken: req.header('Authorization') })
+  res.json({ message: `Welcome ${user.name}` })
 })
 
 
