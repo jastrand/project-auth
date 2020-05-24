@@ -23,12 +23,13 @@ const Logout = styled.button`
   border-color: #3831ac;
 `
 const ImgWrapper = styled.div`
-  position: relative
+  position: relative;
+  width: 200px;
+  height: 200px;
 `
 
 const Image = styled.img`
-  width: 10em;
-  height: 10em;
+  width: 100%;
   border-radius: 50%;
   margin: 10px;
 
@@ -66,6 +67,7 @@ export const Secret = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [message, setMessage] = useState()
+  const [showForm, setShowForm] = useState(false)
   const token = useSelector((state) => state.userProfile.user.accessToken)
   const image = useSelector((state) => state.userProfile.user.profileImage)
   useEffect(() => {
@@ -86,11 +88,11 @@ export const Secret = () => {
     <Container>
       <Text>{message}</Text>
       <ImgWrapper>
-        <ImgText>Update image</ImgText>
+        <ImgText onClick={() => setShowForm(!showForm)}>Update image</ImgText>
         {!image && <Image src={require('../default-profilepic.png')} alt="profile picture"></Image>}
         {image && <Image src={image} alt="profile picture"></Image>}
       </ImgWrapper>
-      <ImageForm />
+      {showForm && <ImageForm function={setShowForm} />}
       {token && <Logout onClick={() => LogOut()}>Log out</Logout>}
       {!token && <Animation />}
     </Container>

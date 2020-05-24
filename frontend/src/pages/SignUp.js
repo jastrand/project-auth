@@ -32,7 +32,7 @@ export const SignUp = () => {
                     }
                 } else {
                     dispatch(
-                        userProfile.actions.loggedIn({ id: data.id, accessToken: data.accessToken, loggedIn: true })
+                        userProfile.actions.loggedIn({ id: data.id, accessToken: data.accessToken, loggedIn: true, profileImage: data.profileImage })
                     )
                     setEmailError(false)
                     setUsernameError(false)

@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { userProfile } from '../reducers/userinfo'
 
-export const ImageForm = () => {
+export const ImageForm = (props) => {
     const id = useSelector((state) => state.userProfile.user.id)
     const dispatch = useDispatch()
     const [imageUrl, setImageUrl] = useState()
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(id)
+        props.function(false)
         fetch(`http://localhost:8080/users/${id}`, {
             method: 'POST',
             body: JSON.stringify({ image: imageUrl }),

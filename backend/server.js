@@ -29,7 +29,7 @@ const User = mongoose.model('User', {
   },
   profileImage: {
     type: String,
-    default: '' 
+    default: ''
   }
 })
 
@@ -71,7 +71,7 @@ app.post('/users', async (req, res) => {
     if (!existingUsername && !existingEmail) {
       const user = await new User({ name, email, password: bcrypt.hashSync(password) })
       user.save()
-      res.status(201).json({ id: user._id, accessToken: user.accessToken })
+      res.status(201).json({ id: user._id, accessToken: user.accessToken, profileImage: user.profileImage })
     } else if (existingUsername) {
       res.status(400).json({ error: 'Username already exist' })
     } else {
@@ -85,7 +85,7 @@ app.post('/users', async (req, res) => {
 app.post('/sessions', async (req, res) => {
   const user = await User.findOne({ name: req.body.name });
   if (user && bcrypt.compareSync(req.body.password, user.password)) {
-    res.json({ userId: user._id, accessToken: user.accessToken })
+    res.json({ userId: user._id, accessToken: user.accessToken, profileImage: user.profileImage })
   } else {
     if (!user) {
       res.status(404).json({ error: 'Username does not exist' })
@@ -104,9 +104,9 @@ app.get('/secrets', async (req, res) => {
 
 //find user and update profile image
 app.post('/users/:id', async (req, res) => {
- const user = await User.findOneAndUpdate({ _id:req.params.id },
-   { profileImage:req.body.image }, { new:true })
-   res.json({ imageURL:user.profileImage })
+  const user = await User.findOneAndUpdate({ _id: req.params.id },
+    { profileImage: req.body.image }, { new: true })
+  res.json({ imageURL: user.profileImage })
 })
 
 
