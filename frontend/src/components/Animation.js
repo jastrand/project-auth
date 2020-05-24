@@ -1,6 +1,6 @@
 import React from 'react'
 import Lottie from 'lottie-react-web'
-import LockedOut from '../5270-locked.json'
+import LockedOut from '../assets/5270-locked.json'
 
 export const Animation = () => {
 

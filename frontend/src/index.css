@@ -1,24 +1,21 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%; 
   height: 100vh;
-  background-size: 200% 200%;
-  background-image: linear-gradient(270deg, white, black);
-  animation: MovingBackground 20s ease infinite;
-}
-
-@keyframes MovingBackground {
-  0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+  animation: slideBg 15s linear infinite 0s;
+  animation-timing-function: ease-in-out;
+  background-image: url('../src/assets/bg4.jpeg');
 }
 
 code {

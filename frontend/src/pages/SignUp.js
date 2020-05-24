@@ -42,7 +42,7 @@ export const SignUp = () => {
     }
 
     return (
-        <Form color="#dcc0c7" onSubmit={(e) => handleSubmit(e)}>
+        <Form color="darkslategrey" onSubmit={(e) => handleSubmit(e)}>
             <Header>Sign up</Header>
             <Label>
                 Username

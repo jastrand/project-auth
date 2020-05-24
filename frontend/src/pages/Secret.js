@@ -7,8 +7,8 @@ import { Animation } from '../components/Animation'
 import { ImageForm } from '../components/ImageForm'
 
 const Text = styled.p`
-  font-size: 50px;
-  color: #3831ac;
+  font-size: 60px;
+  color: white;
   font-family: 'Bangers';
   margin: 0;
   margin-bottom: -50px;
@@ -19,13 +19,23 @@ const Logout = styled.button`
   background-color: transparent;
   border-radius: 12px;
   margin: 20px;
-  color: #3831ac;
-  border-color: #3831ac;
+  color: white;
+  padding: 10px;
+  border-color: white;
+
+  &:hover {
+    background-color: white;
+    cursor: pointer;
+    transform: scale(1.2);
+    color: black;
+  }
 `
 const ImgWrapper = styled.div`
   position: relative;
-  width: 200px;
-  height: 200px;
+  min-width: 200px;
+  min-height: 200px;
+  max-width: 200px;
+  max-height: 200px;
 `
 
 const Image = styled.img`
@@ -49,8 +59,8 @@ const Container = styled.div`
 const ImgText = styled.button`
   position: absolute;
   display: none;
-  top: 40%;
-  left: 17%;
+  top: 45%;
+  left: 25%;
   z-index: 5;
   color: white;
   background: none;
@@ -89,7 +99,7 @@ export const Secret = () => {
       <Text>{message}</Text>
       {token && <ImgWrapper>
         <ImgText onClick={() => setShowForm(!showForm)}>Update image</ImgText>
-        {!image && <Image src={require('../default-profilepic.png')} alt="profile picture"></Image>}
+        {!image && <Image src={require('../assets/face.png')} alt="profile picture"></Image>}
         {image && <Image src={image} alt="profile picture"></Image>}
       </ImgWrapper>}
       {showForm && <ImageForm function={setShowForm} />}
