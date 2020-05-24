@@ -35,7 +35,7 @@ const authenticateUser = async (req, res, next) => {
     req.user = user
     next()
   } else {
-    res.status(401).json({ message: 'You must be loged in to see this message' })
+    res.status(401).json({ message: 'You must be logged in to see this message' })
   }
 }
 

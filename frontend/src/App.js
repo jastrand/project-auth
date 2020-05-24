@@ -1,20 +1,41 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
 import { Provider } from 'react-redux'
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { combineReducers, createStore } from '@reduxjs/toolkit'
 import { SignUp } from './pages/SignUp'
 import { LogIn } from './pages/LogIn'
 import { Secret } from './pages/Secret'
 import { userProfile } from 'reducers/userinfo'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
+const saveToLocalStorage = (state) => {
+  try {
+    const serializedState = JSON.stringify(state)
+    localStorage.setItem('state', serializedState)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const loadFromLocalStorage = () => {
+  try {
+    const serializedState = localStorage.getItem('state')
+    if (serializedState === null) return undefined
+    return JSON.parse(serializedState)
+  } catch (error) {
+    console.log(error)
+    return undefined
+  }
+}
+
 const reducer = combineReducers({
   userProfile: userProfile.reducer
 })
 
-const store = configureStore({ reducer })
+const persistedState = loadFromLocalStorage()
 
+const store = createStore(reducer, persistedState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
+store.subscribe(() => saveToLocalStorage(store.getState()))
 
 
 export const App = () => {
