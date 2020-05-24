@@ -5,7 +5,7 @@ const initialState = {
         id: false,
         accessToken: false,
         loggedIn: false,
-        profileImage: ''
+        profileImage: false
     }
 }
 
@@ -31,6 +31,6 @@ export const userProfile = createSlice({
             const { profileImage } = action.payload
             state.user.profileImage = profileImage
         },
-        
+
     }
 })

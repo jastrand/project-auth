@@ -26,7 +26,7 @@ export const LogIn = () => {
           data.error === "Username does not exist" ? setUserError(true) : setPasswordError(true)
         } else {
           dispatch(
-            userProfile.actions.loggedIn({ id: data.id, accessToken: data.accessToken, loggedIn: true })
+            userProfile.actions.loggedIn({ id: data.userId, accessToken: data.accessToken, loggedIn: true })
           )
           setUserError(false)
           setPasswordError(false)

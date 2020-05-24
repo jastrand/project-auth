@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux'
 import { userProfile } from '../reducers/userinfo'
 import { Form, Header, Input, Label, Button, Register } from '../components/FormStuff'
 
-
-
 export const SignUp = () => {
     const dispatch = useDispatch()
     const history = useHistory()
