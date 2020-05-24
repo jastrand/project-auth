@@ -15,7 +15,7 @@ export const LogIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch('http://localhost:8080/sessions', {
+    fetch('https://project-auth-lions.herokuapp.com/sessions', {
       method: 'POST',
       body: JSON.stringify({ name, password }),
       headers: { 'Content-Type': 'application/json' }

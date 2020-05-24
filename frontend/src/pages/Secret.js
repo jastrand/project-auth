@@ -72,7 +72,7 @@ export const Secret = () => {
   const image = useSelector((state) => state.userProfile.user.profileImage)
   useEffect(() => {
     console.log('hello')
-    fetch('http://localhost:8080/secrets', {
+    fetch('https://project-auth-lions.herokuapp.com/secrets', {
       method: 'GET',
       headers: { 'Authorization': token, 'Content-Type': 'application/json' }
     })
@@ -87,11 +87,11 @@ export const Secret = () => {
   return (
     <Container>
       <Text>{message}</Text>
-      <ImgWrapper>
+      {token && <ImgWrapper>
         <ImgText onClick={() => setShowForm(!showForm)}>Update image</ImgText>
         {!image && <Image src={require('../default-profilepic.png')} alt="profile picture"></Image>}
         {image && <Image src={image} alt="profile picture"></Image>}
-      </ImgWrapper>
+      </ImgWrapper>}
       {showForm && <ImageForm function={setShowForm} />}
       {token && <Logout onClick={() => LogOut()}>Log out</Logout>}
       {!token && <Animation />}
