@@ -26,6 +26,10 @@ const User = mongoose.model('User', {
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
+  },
+  profileImage: {
+    type: String,
+    default: '' 
   }
 })
 
@@ -58,7 +62,7 @@ app.get('/', async (req, res) => {
   res.json(users)
 })
 
-// 5ec7d1f65a78606bf88a9b65
+
 app.post('/users', async (req, res) => {
   try {
     const { name, email, password } = req.body
@@ -96,6 +100,13 @@ app.get('/secrets', authenticateUser)
 app.get('/secrets', async (req, res) => {
   const user = await User.findOne({ accessToken: req.header('Authorization') })
   res.json({ message: `Welcome ${user.name}` })
+})
+
+//find user and update profile image
+app.post('/users/:id', async (req, res) => {
+ const user = await User.findOneAndUpdate({ _id:req.params.id },
+   { profileImage:req.body.image }, { new:true })
+   res.json({ imageURL:user.profileImage })
 })
 
 
