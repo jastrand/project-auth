@@ -85,7 +85,6 @@ app.post('/sessions', async (req, res) => {
 })
 
 app.get('/secrets', authenticateUser)
-
 app.get('/secrets', async (req, res) => {
   const user = await User.findOne({ accessToken: req.header('Authorization') })
   res.json({ message: `Welcome ${user.name}` })
