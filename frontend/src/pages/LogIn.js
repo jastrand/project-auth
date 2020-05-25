@@ -10,8 +10,7 @@ export const LogIn = () => {
   const history = useHistory()
   const [name, setName] = useState()
   const [password, setPassword] = useState()
-  const [userError, setUserError] = useState(false)
-  const [passwordError, setPasswordError] = useState(false)
+  const [invalid, setInvalid] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -23,13 +22,12 @@ export const LogIn = () => {
       .then(res => res.json())
       .then((data) => {
         if (data.error) {
-          data.error === "Username does not exist" ? setUserError(true) : setPasswordError(true)
+          setInvalid(true)
         } else {
           dispatch(
             userProfile.actions.loggedIn({ id: data.userId, accessToken: data.accessToken, loggedIn: true, profileImage: data.profileImage })
           )
-          setUserError(false)
-          setPasswordError(false)
+          setInvalid(false)
           history.push('/secret')
         }
       })
@@ -48,7 +46,6 @@ export const LogIn = () => {
           maxLength={20}
           onChange={(e) => setName(e.target.value)}>
         </Input>
-        {userError && <p>Username not found</p>}
       </Label>
       <Label>
         Password
@@ -59,7 +56,7 @@ export const LogIn = () => {
           maxLength={20}
           onChange={(e) => setPassword(e.target.value)}>
         </Input>
-        {passwordError && <p>Password does not match</p>}
+        {invalid && <p>Invalid username/password</p>}
       </Label>
       <Button
         disabled={!name || !password}
