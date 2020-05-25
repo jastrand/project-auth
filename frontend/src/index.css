@@ -1,4 +1,5 @@
 body {
+  box-sizing: border-box;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -11,7 +12,7 @@ body {
   align-items: center;
   height: 100vh;
   background-size: 200% 200%;
-  background-image: linear-gradient(270deg, white, black);
+  background-image: linear-gradient(270deg, #99B898, #FECEA8);
   animation: MovingBackground 20s ease infinite;
 }
 

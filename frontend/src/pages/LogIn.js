@@ -34,16 +34,16 @@ export const LogIn = () => {
   }
 
   return (
-    <Form color="#5e1a41" onSubmit={(e) => handleSubmit(e)}>
+    <Form color="white" onSubmit={(e) => handleSubmit(e)}>
       <Header>Login</Header>
       <Label>
 
         Username
       <Input
           type='text'
-          placeholder="Enter username"
           minLength={3}
           maxLength={20}
+          borderColor='grey'
           onChange={(e) => setName(e.target.value)}>
         </Input>
       </Label>
@@ -51,9 +51,9 @@ export const LogIn = () => {
         Password
       <Input
           type='password'
-          placeholder="Enter password"
           minLength={8}
           maxLength={20}
+          borderColor='grey'
           onChange={(e) => setPassword(e.target.value)}>
         </Input>
         {invalid && <p>Invalid username/password</p>}
@@ -61,7 +61,7 @@ export const LogIn = () => {
       <Button
         disabled={!name || !password}
         type='submit'>LOGIN</Button>
-      <Register>Not a member? <Link style={{ color: "white" }} to="/register">Sign up</Link></Register>
+      <Register>Not a member? <Link style={{ color: "black" }} to="/register">Sign up</Link></Register>
     </Form>
   )
 }

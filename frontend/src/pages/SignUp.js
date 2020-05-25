@@ -48,7 +48,7 @@ export const SignUp = () => {
     }
 
     return (
-        <Form color="#dcc0c7" onSubmit={(e) => handleSubmit(e)}>
+        <Form color="white" onSubmit={(e) => handleSubmit(e)}>
             <Header>Sign up</Header>
             <Label>
                 Username
@@ -56,7 +56,7 @@ export const SignUp = () => {
                     type='text'
                     minLength={3}
                     maxLength={20}
-                    borderColor={usernameError ? 'red' : ''}
+                    borderColor={usernameError ? 'red' : 'grey'}
                     onChange={(e) => setName(e.target.value)}
                     required>
                 </Input>
@@ -66,7 +66,7 @@ export const SignUp = () => {
                 Email
                 <Input
                     type='email'
-                    borderColor={emailError ? 'red' : ''}
+                    borderColor={emailError ? 'red' : 'grey'}
                     onChange={(e) => setEmail(e.target.value)}
                     required>
 
@@ -77,6 +77,7 @@ export const SignUp = () => {
                 Password
             <Input
                     type='password'
+                    borderColor='grey'
                     minLength={8}
                     maxLength={20}
                     onChange={(e) => setPassword(e.target.value)}
@@ -88,6 +89,7 @@ export const SignUp = () => {
                 Confirm Password
             <Input
                     type='password'
+                    borderColor='grey'
                     minLength={8}
                     maxLength={20}
                     onChange={(e) => setSecondPassword(e.target.value)}
@@ -97,7 +99,7 @@ export const SignUp = () => {
             </Label>
             <Button
                 type='submit'>SIGN UP</Button>
-            <Register>Already a member? <Link style={{ color: "white" }} to="/">Log in!</Link></Register>
+            <Register>Already a member? <Link style={{ color: "black" }} to="/">Log in!</Link></Register>
         </Form>
     )
 }
