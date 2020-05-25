@@ -11,21 +11,29 @@ const Text = styled.p`
   color: #3831ac;
   font-family: 'Bangers';
   margin: 0;
-  margin-bottom: -50px;
+  margin-bottom: -30px;
 `
 
 const Logout = styled.button`
-  font-size: 30px;
+  font-size: 15px;
   background-color: transparent;
   border-radius: 12px;
   margin: 20px;
-  color: #3831ac;
-  border-color: #3831ac;
+  color: red;
+  border-color: red;
+  padding: 14px;
+
+  &:hover {
+    background: red;
+    color: white;
+    transform: scale(1.1);
+    cursor: pointer;
+  }
 `
 const ImgWrapper = styled.div`
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 170px;
+  height: 170px;
 `
 
 const Image = styled.img`
@@ -39,18 +47,21 @@ const Image = styled.img`
 
 `
 const Container = styled.div`
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
 `
 
 const ImgText = styled.button`
   position: absolute;
   display: none;
   top: 40%;
-  left: 17%;
+  left: 20%;
   z-index: 5;
   color: white;
   background: none;

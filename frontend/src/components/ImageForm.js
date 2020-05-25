@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import styled from 'styled-components'
 import { userProfile } from '../reducers/userinfo'
+import { Input, Label } from '../components/FormStuff'
+
 
 export const ImageForm = (props) => {
     const id = useSelector((state) => state.userProfile.user.id)
@@ -20,15 +23,43 @@ export const ImageForm = (props) => {
             })
     }
     return (
-        <form onSubmit={(e) => handleSubmit(e)}>
-            <label>Update profile image
-            <input type='url'
+        <Form onSubmit={(e) => handleSubmit(e)}>
+            <Label>Update profile image
+            <Input type='url'
                     onChange={(e) => setImageUrl(e.target.value)}
-                ></input></label>
-            <button
+                ></Input></Label>
+            <Button
                 type='submit'>
                 Add url
-            </button>
-        </form>
+            </Button>
+        </Form>
     )
 }
+
+const Form = styled.form`
+  flex-direction: column;
+  align-items: center;
+  background-color: ${props => props.color};
+  width: 300px;
+  border-radius: 8px;
+  justify-content: space-between;
+  font-family: 'Roboto';
+  display: flex;
+`
+
+const Button = styled.button`
+font-size: 20px;
+  background-color: transparent;
+  border-radius: 12px;
+  margin: 20px;
+  color: #3831ac;
+  border-color: #3831ac;
+  padding: 14px;
+
+  &:hover {
+    background: #3831ac;
+    color: white;
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+`
