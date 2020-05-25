@@ -21,7 +21,8 @@ const User = mongoose.model('User', {
   },
   email: {
     type: String,
-    unique: true
+    unique: true,
+    required: true
   },
   accessToken: {
     type: String,
@@ -66,19 +67,11 @@ app.get('/', async (req, res) => {
 app.post('/users', async (req, res) => {
   try {
     const { name, email, password } = req.body
-    const existingUsername = await User.findOne({ name: name })
-    const existingEmail = await User.findOne({ email: email })
-    if (!existingUsername && !existingEmail) {
-      const user = await new User({ name, email, password: bcrypt.hashSync(password) })
-      user.save()
-      res.status(201).json({ id: user._id, accessToken: user.accessToken, profileImage: user.profileImage })
-    } else if (existingUsername) {
-      res.status(400).json({ error: 'Username already exist' })
-    } else {
-      res.status(400).json({ error: 'Email already exist' })
-    }
+    const user = await new User({ name, email, password: bcrypt.hashSync(password) }).save()
+
+    res.status(201).json({ id: user._id, accessToken: user.accessToken, profileImage: user.profileImage })
   } catch (err) {
-    res.status(400).json({ error: 'could not create user', errors: err.errors })
+    res.status(400).json({ message: "Could not create user", error: err })
   }
 })
 
@@ -87,11 +80,7 @@ app.post('/sessions', async (req, res) => {
   if (user && bcrypt.compareSync(req.body.password, user.password)) {
     res.json({ userId: user._id, accessToken: user.accessToken, profileImage: user.profileImage })
   } else {
-    if (!user) {
-      res.status(404).json({ error: 'Username does not exist' })
-    } else {
-      res.status(400).json({ error: 'Invalid password' })
-    }
+    res.status(404).json({ error: "Invalid username or password" })
   }
 })
 
