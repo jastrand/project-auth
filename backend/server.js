@@ -6,7 +6,7 @@ import crypto from 'crypto'
 import bcrypt from 'bcrypt-nodejs'
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/authAPI"
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 mongoose.Promise = Promise
 
 
@@ -40,7 +40,7 @@ const authenticateUser = async (req, res, next) => {
     req.user = user
     next()
   } else {
-    res.status(401).json({ message: 'You must be logged in to see this message' })
+    res.status(403).json({ message: 'You must be logged in to see this message' })
   }
 }
 
@@ -66,9 +66,9 @@ app.get('/', async (req, res) => {
 
 app.post('/users', async (req, res) => {
   try {
-    const { name, email, password } = req.body
+    const name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1).toLowerCase()
+    const { email, password } = req.body
     const user = await new User({ name, email, password: bcrypt.hashSync(password) }).save()
-
     res.status(201).json({ id: user._id, accessToken: user.accessToken, profileImage: user.profileImage })
   } catch (err) {
     res.status(400).json({ message: "Could not create user", error: err })
@@ -76,7 +76,8 @@ app.post('/users', async (req, res) => {
 })
 
 app.post('/sessions', async (req, res) => {
-  const user = await User.findOne({ name: req.body.name });
+  const name = new RegExp(req.body.name, 'i')
+  const user = await User.findOne({ name });
   if (user && bcrypt.compareSync(req.body.password, user.password)) {
     res.json({ userId: user._id, accessToken: user.accessToken, profileImage: user.profileImage })
   } else {
