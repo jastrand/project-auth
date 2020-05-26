@@ -26,12 +26,13 @@ const ImgWrapper = styled.div`
   position: relative;
   width: 200px;
   height: 200px;
+  border-radius: 50%;
 `
 
 const Image = styled.img`
-  width: 100%;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  margin: 10px;
 
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
@@ -89,7 +90,7 @@ export const Secret = () => {
       <Text>{message}</Text>
       {token && <ImgWrapper>
         <ImgText onClick={() => setShowForm(!showForm)}>Update image</ImgText>
-        {!image && <Image src={require('../default-profilepic.png')} alt="profile picture"></Image>}
+        {!image && <Image src={require('../blank-profile.jpg')} alt="profile picture"></Image>}
         {image && <Image src={image} alt="profile picture"></Image>}
       </ImgWrapper>}
       {showForm && <ImageForm function={setShowForm} />}
