@@ -34,12 +34,12 @@ const ImgWrapper = styled.div`
   position: relative;
   width: 170px;
   height: 170px;
+  border-radius: 50%;
 `
 
 const Image = styled.img`
   width: 100%;
   border-radius: 50%;
-  margin: 10px;
 
   ${ImgWrapper}:hover & {
     filter: brightness(20%);
@@ -61,7 +61,7 @@ const ImgText = styled.button`
   position: absolute;
   display: none;
   top: 40%;
-  left: 20%;
+  left: 15%;
   z-index: 5;
   color: white;
   background: none;
